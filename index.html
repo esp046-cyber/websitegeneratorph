@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PH Niche Generator 2026</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 1%;
+            color: #fff;
+        }
+        
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-align: center;
+            opacity: 0.95;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            margin-bottom: 15px;
+        }
+        
+        .btn-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .btn {
+            padding: 18px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(245, 87, 108, 0.4);
+            grid-column: 1 / -1;
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.25);
+            color: white;
+            font-size: 0.85rem;
+            padding: 14px;
+        }
+        
+        .btn-primary:active, .btn-secondary:active {
+            transform: scale(0.98);
+        }
+        
+        .btn.spinning {
+            animation: spin 0.5s ease;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(0.95); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+        
+        .result {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 15px;
+            border-left: 4px solid #f5576c;
+            animation: slideIn 0.4s ease;
+            position: relative;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .niche-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+        
+        .niche-desc {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+        
+        .tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.3);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin: 4px;
+            font-weight: 500;
+        }
+        
+        .layout-preview {
+            margin-top: 15px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+        
+        .layout-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .layout-option {
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .stat-box {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .stat-label {
+            font-size: 0.75rem;
+            opacity: 0.8;
+            margin-bottom: 5px;
+        }
+        
+        .stat-value {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+        
+        .action-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-top: 15px;
+        }
+        
+        .action-btn {
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            color: white;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .action-btn:active {
+            transform: scale(0.95);
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .favorites {
+            margin-top: 15px;
+        }
+        
+        .fav-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .fav-item:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .fav-remove {
+            background: rgba(255, 0, 0, 0.6);
+            border: none;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+        
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            animation: toastIn 0.3s ease;
+            z-index: 1000;
+        }
+        
+        @keyframes toastIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+        
+        .multi-results {
+            display: grid;
+            gap: 15px;
+        }
+        
+        .mini-result {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 12px;
+            border-left: 3px solid #f5576c;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .mini-result:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateX(5px);
+        }
+        
+        .mini-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .mini-desc {
+            font-size: 0.85rem;
+            opacity: 0.85;
+            line-height: 1.4;
+        }
+        
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🇵🇭 Filipino Website Niche Generator 2026</h1>
+        
+        <div class="card">
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="generateNiche()">🎲 Generate Niche</button>
+                <button class="btn btn-secondary" onclick="generateMultiple()">📋 Generate 3</button>
+                <button class="btn btn-secondary" onclick="toggleFavorites()">⭐ Favorites (<span id="favCount">0</span>)</button>
+            </div>
+            
+            <div id="result"></div>
+            <div id="multiResults" class="multi-results hidden"></div>
+            
+            <div id="favorites" class="favorites hidden"></div>
+        </div>
+    </div>
+
+    <script>
+        const niches = [
+            {
+                title: "Provincial Food Delivery Hub",
+                desc: "Connect local restaurants in provinces to customers via a streamlined delivery platform focused on regional Filipino cuisines.",
+                tags: ["E-commerce", "Food", "Local Business"],
+                layout: "Hero Banner → Restaurant Grid → Order System",
+                theme: "Warm oranges with food photography",
+                potential: "High",
+                difficulty: "Medium"
+            },
+            {
+                title: "Barangay Services Portal",
+                desc: "Digital platform for barangay residents to access permits, announcements, and community services online.",
+                tags: ["Gov Tech", "Community", "Services"],
+                layout: "Dashboard → Service Cards → Forms",
+                theme: "Blue & white government aesthetic",
+                potential: "Very High",
+                difficulty: "Medium"
+            },
+            {
+                title: "Filipino Freelancer Marketplace",
+                desc: "Job board specifically for Filipino remote workers connecting with local and international clients.",
+                tags: ["Jobs", "Freelance", "Marketplace"],
+                layout: "Job Listings → Profile Pages → Messaging",
+                theme: "Professional navy with green accents",
+                potential: "High",
+                difficulty: "High"
+            },
+            {
+                title: "Sari-Sari Store Inventory App",
+                desc: "Simple inventory management system for neighborhood sari-sari stores with sales tracking.",
+                tags: ["Business Tools", "Retail", "SaaS"],
+                layout: "Login → Inventory Table → Sales Graph",
+                theme: "Clean white with colorful icons",
+                potential: "Medium",
+                difficulty: "Low"
+            },
+            {
+                title: "PH Travel Itinerary Planner",
+                desc: "Curated travel guides and itinerary builder for exploring hidden gems across Philippine islands.",
+                tags: ["Travel", "Tourism", "Guides"],
+                layout: "Destination Cards → Map View → Booking Links",
+                theme: "Tropical blues & sandy beige",
+                potential: "High",
+                difficulty: "Medium"
+            },
+            {
+                title: "Local Tutor Matching Platform",
+                desc: "Connect students with verified Filipino tutors for academic subjects and skills training.",
+                tags: ["Education", "Services", "Marketplace"],
+                layout: "Search → Tutor Profiles → Booking Calendar",
+                theme: "Friendly yellows & educational blues",
+                potential: "High",
+                difficulty: "Medium"
+            },
+            {
+                title: "Palengke Price Tracker",
+                desc: "Real-time market prices for vegetables, meat, and fish across different public markets in Metro Manila.",
+                tags: ["Data", "Consumer", "Price Comparison"],
+                layout: "Price Table → Location Filter → Trends Chart",
+                theme: "Market greens with price tags",
+                potential: "Medium",
+                difficulty: "Medium"
+            },
+            {
+                title: "OFW Remittance Calculator",
+                desc: "Compare remittance rates, calculate fees, and find best deals for sending money to the Philippines.",
+                tags: ["Finance", "Tools", "OFW"],
+                layout: "Calculator → Rate Comparison → Provider List",
+                theme: "Trust-building blues & gold",
+                potential: "High",
+                difficulty: "Low"
+            },
+            {
+                title: "Pinoy Recipe Database",
+                desc: "Comprehensive collection of Filipino recipes with video tutorials and ingredient substitutions.",
+                tags: ["Food", "Content", "Community"],
+                layout: "Recipe Cards → Video Player → Comments",
+                theme: "Appetizing reds & warm browns",
+                potential: "Medium",
+                difficulty: "Low"
+            },
+            {
+                title: "Jeepney Route Finder",
+                desc: "Interactive guide to jeepney routes, fares, and real-time updates for commuters in major cities.",
+                tags: ["Transportation", "Utility", "Mobile-First"],
+                layout: "Route Map → Fare Calculator → Updates Feed",
+                theme: "Iconic jeepney colors - rainbow stripes",
+                potential: "Very High",
+                difficulty: "High"
+            },
+            {
+                title: "Property Rental Hub - Bedspace Focus",
+                desc: "Marketplace for affordable bedspace, apartment, and condo rentals with verified listings.",
+                tags: ["Real Estate", "Rentals", "Marketplace"],
+                layout: "Listing Grid → Map → Contact Form",
+                theme: "Modern grays with home imagery",
+                potential: "Very High",
+                difficulty: "Medium"
+            },
+            {
+                title: "Filipino Podcast Directory",
+                desc: "Curated directory of Tagalog and English podcasts by Filipino creators across all genres.",
+                tags: ["Media", "Content", "Directory"],
+                layout: "Podcast Cards → Player → Categories",
+                theme: "Dark mode with vibrant accents",
+                potential: "Medium",
+                difficulty: "Low"
+            },
+            {
+                title: "Skills Training Workshop Hub",
+                desc: "Platform listing affordable workshops for practical skills like baking, sewing, tech, and trades.",
+                tags: ["Education", "Events", "Skills"],
+                layout: "Workshop Grid → Registration → Calendar",
+                theme: "Energetic purples & oranges",
+                potential: "High",
+                difficulty: "Medium"
+            },
+            {
+                title: "Wedding Suppliers Marketplace",
+                desc: "One-stop directory for Filipino wedding suppliers: venues, caterers, photographers, coordinators.",
+                tags: ["Events", "Weddings", "Directory"],
+                layout: "Category Grid → Supplier Profiles → Inquiry",
+                theme: "Romantic pinks & elegant whites",
+                potential: "High",
+                difficulty: "Low"
+            },
+            {
+                title: "Handmade Crafts Marketplace",
+                desc: "E-commerce platform for Filipino artisans selling handwoven, pottery, jewelry, and local crafts.",
+                tags: ["E-commerce", "Crafts", "Artisan"],
+                layout: "Product Grid → Shop Pages → Cart",
+                theme: "Earthy tones with craft textures",
+                potential: "Medium",
+                difficulty: "Medium"
+            }
+        ];
+
+        let favorites = [];
+        let currentNiche = null;
+
+        function generateNiche() {
+            const btn = event.target;
+            btn.classList.add('spinning');
+            setTimeout(() => btn.classList.remove('spinning'), 500);
+            
+            document.getElementById('multiResults').classList.add('hidden');
+            
+            currentNiche = niches[Math.floor(Math.random() * niches.length)];
+            displayNiche(currentNiche);
+        }
+
+        function displayNiche(niche) {
+            const resultHTML = `
+                <div class="result">
+                    <div class="niche-title">${niche.title}</div>
+                    <div class="niche-desc">${niche.desc}</div>
+                    <div>
+                        ${niche.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    </div>
+                    
+                    <div class="stats">
+                        <div class="stat-box">
+                            <div class="stat-label">Market Potential</div>
+                            <div class="stat-value">${niche.potential}</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">Difficulty</div>
+                            <div class="stat-value">${niche.difficulty}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="layout-preview">
+                        <div class="layout-title">Suggested Layout</div>
+                        <div class="layout-option">📐 ${niche.layout}</div>
+                        <div class="layout-option">🎨 ${niche.theme}</div>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button class="action-btn" onclick="saveFavorite()">⭐ Save</button>
+                        <button class="action-btn" onclick="shareNiche()">📤 Share</button>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('result').innerHTML = resultHTML;
+        }
+
+        function generateMultiple() {
+            const btn = event.target;
+            btn.classList.add('spinning');
+            setTimeout(() => btn.classList.remove('spinning'), 500);
+            
+            document.getElementById('result').innerHTML = '';
+            
+            const shuffled = [...niches].sort(() => 0.5 - Math.random());
+            const selected = shuffled.slice(0, 3);
+            
+            const multiHTML = selected.map((niche, idx) => `
+                <div class="mini-result" onclick='viewDetail(${JSON.stringify(niche)})'>
+                    <div class="mini-title">${idx + 1}. ${niche.title}</div>
+                    <div class="mini-desc">${niche.desc}</div>
+                    <div style="margin-top: 8px;">
+                        ${niche.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    </div>
+                </div>
+            `).join('');
+            
+            document.getElementById('multiResults').innerHTML = multiHTML;
+            document.getElementById('multiResults').classList.remove('hidden');
+        }
+
+        function viewDetail(niche) {
+            currentNiche = niche;
+            document.getElementById('multiResults').classList.add('hidden');
+            displayNiche(niche);
+        }
+
+        function saveFavorite() {
+            if (!currentNiche) return;
+            
+            if (!favorites.find(f => f.title === currentNiche.title)) {
+                favorites.push(currentNiche);
+                updateFavCount();
+                showToast('✅ Saved to favorites!');
+            } else {
+                showToast('⚠️ Already in favorites!');
+            }
+        }
+
+        function shareNiche() {
+            if (!currentNiche) return;
+            
+            const text = `${currentNiche.title}\n\n${currentNiche.desc}\n\nTags: ${currentNiche.tags.join(', ')}\nPotential: ${currentNiche.potential} | Difficulty: ${currentNiche.difficulty}`;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                showToast('📋 Copied to clipboard!');
+            });
+        }
+
+        function toggleFavorites() {
+            const favDiv = document.getElementById('favorites');
+            
+            if (favDiv.classList.contains('hidden')) {
+                if (favorites.length === 0) {
+                    showToast('No favorites yet!');
+                    return;
+                }
+                
+                const favHTML = `
+                    <div class="layout-title">Your Favorites</div>
+                    ${favorites.map((fav, idx) => `
+                        <div class="fav-item" onclick='viewDetail(${JSON.stringify(fav)})'>
+                            <span>${fav.title}</span>
+                            <button class="fav-remove" onclick="removeFavorite(${idx}, event)">×</button>
+                        </div>
+                    `).join('')}
+                `;
+                favDiv.innerHTML = favHTML;
+                favDiv.classList.remove('hidden');
+            } else {
+                favDiv.classList.add('hidden');
+            }
+        }
+
+        function removeFavorite(idx, e) {
+            e.stopPropagation();
+            favorites.splice(idx, 1);
+            updateFavCount();
+            toggleFavorites();
+            toggleFavorites();
+            showToast('🗑️ Removed from favorites');
+        }
+
+        function updateFavCount() {
+            document.getElementById('favCount').textContent = favorites.length;
+        }
+
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.remove();
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
